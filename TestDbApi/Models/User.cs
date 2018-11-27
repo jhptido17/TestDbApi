@@ -24,11 +24,15 @@ namespace TestDbApi.Models
         [Required(ErrorMessage = "Role is required")]
         public Roles Role { get; set; }
 
-        //public ICollection<Customer> Customers { get; set; }
         [InverseProperty("CreatedBy")]
         public List<Customer> CustomersCreated { get; set; }
         [InverseProperty("UpdatedBy")]
         public List<Customer> CustomersUpdated { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
+        /*[InverseProperty("CreatedBy")]
+        public List<Customer> CustomersCreated { get; set; }
+        [InverseProperty("UpdatedBy")]
+        public List<Customer> CustomersUpdated { get; set; }*/
     }
 
     public enum Roles

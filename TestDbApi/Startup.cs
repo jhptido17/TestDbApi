@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using TestDbApi.Data;
-using TestDbApi.SettingsHelpers;
+using TestDbApi.Extensions;
 
 namespace TestDbApi
 {
@@ -40,10 +40,8 @@ namespace TestDbApi
             //services.AddSingleton(Configuration.GetSection("mySettings").Get<MySettings>());
             //services.AddSingleton(Configuration); 
             //services.AddSingleton(cfg => cfg.GetService<IOptions<MySettings>>().Value);
-            Console.WriteLine("sdafsdfasdfasdfasdfasdf: " + mySettings.DbString);
+            services.ConfigureRepositoryWrapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
-
             var connection = mySettings.DbString;
             services.AddDbContext<TheCRMContext>
                 (options => options.UseSqlServer(connection));

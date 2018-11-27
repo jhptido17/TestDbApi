@@ -23,9 +23,10 @@ namespace TestDbApi.Models
 
         [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
         public string Image { get; set; }
-        
-        public User CreatedBy { get; set; }
-        public User UpdatedBy { get; set; }
 
+        //[ForeignKey("CreatedById")]
+        public User CreatedBy { get; set; }
+        //[ForeignKey("UpdatedById")]
+        public User UpdatedBy { get; set; }
     }
 }

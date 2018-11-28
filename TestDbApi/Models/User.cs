@@ -26,9 +26,9 @@ namespace TestDbApi.Models
         public Roles Role { get; set; }
 
         [InverseProperty("CreatedBy")]
-        public virtual ICollection<Customer> CustomersCreate { get; set; }
+        public ICollection<Customer> CustomersCreate { get; set; }
         [InverseProperty("UpdatedBy")]
-        public virtual ICollection<Customer> CustomersUpdate { get; set; }
+        public ICollection<Customer> CustomersUpdate { get; set; }
 
         //[InverseProperty("CreatedBy")]
         //public List<Customer> CustomersCreated { get; set; }

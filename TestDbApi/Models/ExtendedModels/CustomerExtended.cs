@@ -12,8 +12,8 @@ namespace TestDbApi.Models.ExtendedModels
         public string Surname { get; set; }
         public string Image { get; set; }
  
-        public virtual User CreatedBy { get; set; }
-        public virtual User UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         public CustomerExtended()
         {

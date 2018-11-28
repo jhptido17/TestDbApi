@@ -55,7 +55,7 @@ namespace TestDbApi.Controllers
             }
         }
 
-        [HttpGet("{id}/user")]
+        [HttpGet("{id}/d")]
         public IActionResult GetCustomerWithDetails(Guid id)
         {
             try

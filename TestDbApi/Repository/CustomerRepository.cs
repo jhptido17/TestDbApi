@@ -6,6 +6,7 @@ using TestDbApi.Interface;
 using TestDbApi.Models;
 using TestDbApi.Data;
 using TestDbApi.Models.ExtendedModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestDbApi.Repository
 {
@@ -31,12 +32,17 @@ namespace TestDbApi.Repository
         {
             return new CustomerExtended(GetCustomerById(customerId))
             {
+                CreatedBy = TheCRMContext.Customers.Include(u => u.CreatedBy).Where(c => c.CustomerId == customerId).FirstOrDefault().CreatedBy.Username,
+                UpdatedBy = TheCRMContext.Customers.Include(u => u.UpdatedBy).Where(c => c.CustomerId == customerId).FirstOrDefault().UpdatedBy.Username
+            };
+            
+                //CreatedBy = TheCRMContext.Customers.Where(c => c.CustomerId == customerId).FirstOrDefault().CreatedBy.Username
                 //CreatedBy = TheCRMContext.Users
                 //.Where(a => a.OwnerId == ownerId),
                 //UpdatedBy = FindByCondition(user => user.UpdatedBy.Username);
 
                 //var customers = _repoWrapper.Customer.FindByCondition(x => x.CreatedBy.Username.Equals("user1"));
-            };
+            
         }
     }
 }

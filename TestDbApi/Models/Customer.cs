@@ -11,7 +11,8 @@ namespace TestDbApi.Models
     public class Customer
     {
         [Key]
-        public int CustomerId { get; set; }
+        [Column("CustomerId")]
+        public Guid CustomerId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters")]
@@ -24,9 +25,11 @@ namespace TestDbApi.Models
         [StringLength(100, ErrorMessage = "Image URL cannot be longer than 100 characters")]
         public string Image { get; set; }
 
-        //[ForeignKey("CreatedById")]
-        public User CreatedBy { get; set; }
-        //[ForeignKey("UpdatedById")]
-        public User UpdatedBy { get; set; }
+        //public Guid CreatedById { get; set; }
+        //public Guid UpdatedById { get; set;}
+
+        public virtual User CreatedBy { get; set; }
+        
+        public virtual User UpdatedBy { get; set; }
     }
 }

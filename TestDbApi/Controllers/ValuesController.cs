@@ -27,7 +27,7 @@ namespace TestDbApi.Controllers
             var users = _repoWrapper.User.FindByCondition(x => x.Username.Equals("user1"));
             var customers = _repoWrapper.Customer.FindAll();
             //var customers = _repoWrapper.Customer.FindByCondition(x => x.CreatedBy.Username.Equals("user1"));
-            return Ok(customers.First().Name);
+            return Ok(customers);
         }
 
         /*// GET api/values

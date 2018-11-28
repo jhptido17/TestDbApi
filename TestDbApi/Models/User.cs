@@ -11,7 +11,8 @@ namespace TestDbApi.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        [Column("UserId")]
+        public Guid UserId { get; set; }
 
         [Required(ErrorMessage = "Username is required")]
         [StringLength(50, ErrorMessage = "Username cannot be longer than 50 characters")]
@@ -25,9 +26,14 @@ namespace TestDbApi.Models
         public Roles Role { get; set; }
 
         [InverseProperty("CreatedBy")]
-        public List<Customer> CustomersCreated { get; set; }
+        public virtual ICollection<Customer> CustomersCreate { get; set; }
         [InverseProperty("UpdatedBy")]
-        public List<Customer> CustomersUpdated { get; set; }
+        public virtual ICollection<Customer> CustomersUpdate { get; set; }
+
+        //[InverseProperty("CreatedBy")]
+        //public List<Customer> CustomersCreated { get; set; }
+        //[InverseProperty("UpdatedBy")]
+        //public List<Customer> CustomersUpdated { get; set; }
         //public ICollection<Customer> Customers { get; set; }
         /*[InverseProperty("CreatedBy")]
         public List<Customer> CustomersCreated { get; set; }

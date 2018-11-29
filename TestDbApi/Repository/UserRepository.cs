@@ -46,5 +46,12 @@ namespace TestDbApi.Repository
         {
             return new UserWithOutPass(GetUserById(userId));
         }
+
+        public void CreateUser(User user)
+        {
+            user.UserId = Guid.NewGuid();
+            Create(user);
+            Save();
+        }
     }
 }

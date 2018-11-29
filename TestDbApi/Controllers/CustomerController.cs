@@ -76,5 +76,27 @@ namespace TestDbApi.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [HttpGet("{id}/image")]
+        public IActionResult GetCustomerImage(Guid id)
+        {
+            try
+            {
+                var imageUrl = _repository.Customer.GetCustomerImage(id);
+
+                if (imageUrl.CustomerId.Equals(Guid.Empty))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(imageUrl);
+                }
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

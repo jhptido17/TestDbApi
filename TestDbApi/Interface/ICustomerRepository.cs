@@ -12,5 +12,6 @@ namespace TestDbApi.Interface
         IEnumerable<Customer> GetAllCustomers();
         Customer GetCustomerById(Guid customerId);
         CustomerExtended GetCustomerWithDetails(Guid customerId);
+        string GetCustomerImage(Guid customerId);
     }
 }

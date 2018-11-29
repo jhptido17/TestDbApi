@@ -36,5 +36,10 @@ namespace TestDbApi.Repository
                 UpdatedBy = TheCRMContext.Customers.Include(u => u.UpdatedBy).Where(c => c.CustomerId == customerId).FirstOrDefault().UpdatedBy.Username
             };
         }
+
+        public string GetCustomerImage(Guid customerId)
+        {
+            return GetCustomerById(customerId).Image;
+        }
     }
 }

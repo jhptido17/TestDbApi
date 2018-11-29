@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using TestDbApi.Models;
 using TestDbApi.Interface;
 using TestDbApi.Data;
+using TestDbApi.Models.ExtendedModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestDbApi.Repository
 {
@@ -24,6 +26,25 @@ namespace TestDbApi.Repository
             return FindByCondition(user => user.UserId.Equals(userId))
                 .DefaultIfEmpty(new User())
                 .FirstOrDefault();
+        }
+
+        public UserExtended GetUserWithDetails(Guid userId)
+        {
+            return new UserExtended(GetUserById(userId))
+            {
+                CustomerCreated = TheCRMContext.Users.Include(u => u.CustomersCreate).SelectMany(uc => uc.CustomersCreate).Select(c => new UserCustomerDetails(){Name = c.Name, Surname = c.Surname }).ToList(),
+                CustomerUpdated = TheCRMContext.Users.Include(u => u.CustomersUpdate).SelectMany(uc => uc.CustomersUpdate).Select(c => new UserCustomerDetails(){Name = c.Name, Surname = c.Surname}).ToList()
+            };
+        }
+
+        public UserWithOutCustomerInfo GetUserWithOutCustomerInfo(Guid userId)
+        {
+            return new UserWithOutCustomerInfo(GetUserById(userId));
+        }
+
+        public UserWithOutPass GetUserWithOutPass(Guid userId)
+        {
+            return new UserWithOutPass(GetUserById(userId));
         }
     }
 }

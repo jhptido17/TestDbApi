@@ -33,7 +33,7 @@ namespace TestDbApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}/nouserinfo")]
         public IActionResult GetCustomerById(Guid id)
         {
             try
@@ -55,7 +55,7 @@ namespace TestDbApi.Controllers
             }
         }
 
-        [HttpGet("{id}/d")]
+        [HttpGet("{id}")]
         public IActionResult GetCustomerWithDetails(Guid id)
         {
             try

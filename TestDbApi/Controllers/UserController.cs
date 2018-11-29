@@ -34,7 +34,7 @@ namespace TestDbApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}/customernull")]
         public IActionResult GetUserById(Guid id)
         {
             try
@@ -43,6 +43,72 @@ namespace TestDbApi.Controllers
  
                 if (user.UserId.Equals(Guid.Empty))
                 { 
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(user);
+                }
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("{id}/customers")]
+        public IActionResult GetUserWithDetails(Guid id)
+        {
+            try
+            {
+                var user = _repository.User.GetUserWithDetails(id);
+
+                if (user.UserId.Equals(Guid.Empty))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(user);
+                }
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetUserWithOutCustomerInfo(Guid id)
+        {
+            try
+            {
+                var user = _repository.User.GetUserWithOutCustomerInfo(id);
+
+                if (user.UserId.Equals(Guid.Empty))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(user);
+                }
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("{id}/notshowpass")]
+        public IActionResult GetUserWithOutPass(Guid id)
+        {
+            try
+            {
+                var user = _repository.User.GetUserWithOutPass(id);
+
+                if (user.UserId.Equals(Guid.Empty))
+                {
                     return NotFound();
                 }
                 else
